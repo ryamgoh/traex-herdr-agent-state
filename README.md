@@ -115,6 +115,11 @@ Herdr's reportable states are only `idle`, `working`, `blocked`, `unknown`.
 `working` to `idle` without being viewed, so end-of-turn reports `idle` plus a
 visible `done` message.
 
+Two TraeX hook events are intentionally not wired: `PreModelRequest` and
+`PostModelRequest` only observe model sampling. Their output is diagnostic and
+cannot drive a `working`/`blocked`/`idle` state, so handling them would add hook
+overhead without changing anything in the sidebar.
+
 ## Configuration
 
 The bridge activates only when Herdr injects all of the following into the hook
@@ -135,6 +140,12 @@ plugin is safe to keep installed globally.
   send the first message.
 - Hook behavior is build-dependent; if a future TraeX build changes its hook
   contract, re-run the test suite and update the mapping table.
+- Verified against Herdr 0.7.4: `herdr integration` lists no TraeX integration,
+  and every command this plugin calls (`pane report-agent`,
+  `pane report-agent-session`, `pane release-agent`, `notification show`) exists.
+  Re-check `herdr integration status` after upgrading Herdr, since a native
+  TraeX integration could ship in a later release and make this plugin
+  unnecessary.
 
 ## Development
 
