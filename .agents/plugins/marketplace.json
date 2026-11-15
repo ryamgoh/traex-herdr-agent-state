@@ -1,0 +1,20 @@
+{
+  "name": "traex-herdr-agent-state",
+  "interface": {
+    "displayName": "TraeX Herdr Agent State"
+  },
+  "plugins": [
+    {
+      "name": "herdr-agent-state",
+      "source": {
+        "source": "local",
+        "path": "./.agents/plugins/herdr-agent-state"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
